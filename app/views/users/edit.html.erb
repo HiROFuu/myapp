@@ -1,10 +1,10 @@
 <!--yieldメソッドに渡すページタイトル-->
-<% provide(:title, "Edit user") %>
+<% provide(:title, "ユーザーの編集") %>
 <!--yieldメソッドに渡すページurl-->
 <% provide(:url, user_path) %>
 <!--yieldメソッドに渡すボタンに表示する文字-->
-<% provide(:button_text, t('.update_your_profile')) %>
-<h1><%= t('.update_your_profile') %></h1>
+<% provide(:button_text, '変更を保存する') %>
+<h1><%= t('ぷろふぃーるの更新') %></h1>
  
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -12,7 +12,7 @@
     <%= render 'form' %>
     <div class="gravatar_edit">
       <%= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" rel="noopener" target="_blank"><%= t('.change_image') %></a>
+      <a href="http://gravatar.com/emails" rel="noopener" target="_blank"><%= t('画像を変更する') %></a>
     </div>
   </div>
 </div>
