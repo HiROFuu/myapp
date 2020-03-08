@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :events
   get 'users/new'
 
   root 'static_pages#home'
