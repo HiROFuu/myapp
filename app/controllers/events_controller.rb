@@ -4,8 +4,18 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @search_params = event_search_params
+    @events = Event.search(@search_params).includes(:prefecture)
   end
+
+    # 下記コメントアウト分は、↑のdef indexの編集前の文章を残している
+    # @search_date = params(:search_date)
+    # if @search_date.blank?
+    #   @events = Event.all
+    # else
+    #   @events = Event.day_search(params(:search_date))
+    # end
+  # end
 
   # GET /events/1
   # GET /events/1.json
@@ -28,7 +38,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: '展覧会情報の登録が完了しました' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -69,6 +79,10 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :event_data, :event_place, :event_style, :body)
+      params.require(:event).permit(:title, :event_data, :event_place, :event_style, :body, :event_from_date)
+    end
+    
+    def event_search_params
+    params.fetch(:search, {}).permit(:title, :event_data, :event_place, :event_style, :body, :event_from_date, :prefecture_id)
     end
 end

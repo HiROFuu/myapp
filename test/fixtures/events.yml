@@ -2,14 +2,14 @@
 
 one:
   title: MyString
-  event_data: 2020-03-10 14:29:41
+  event_from_date: 2020-03-10 14:29:41
   event_place: MyString
   event_style: MyString
   body: MyText
 
 two:
   title: MyString
-  event_data: 2020-03-10 14:29:41
+  event_from_date: 2020-03-10 14:29:41
   event_place: MyString
   event_style: MyString
   body: MyText

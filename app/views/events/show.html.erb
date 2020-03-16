@@ -1,27 +1,37 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>展覧会名</strong>
   <%= @event.title %>
 </p>
 
 <p>
-  <strong>Event data:</strong>
-  <%= @event.event_data %>
+  <strong>開催日</strong>
+  <%= @event.event_from_date %>
 </p>
 
 <p>
-  <strong>Event place:</strong>
+  <strong>Event data:</strong>
+  <%= @event.event_to_date %>
+</p>
+
+<p>
+  <strong>開催時間</strong>
+  <%= @event.Event_time %>
+</p>
+
+<p>
+  <strong>開催場所</strong>
   <%= @event.event_place %>
 </p>
 
 <p>
-  <strong>Event style:</strong>
+  <strong>流派</strong>
   <%= @event.event_style %>
 </p>
 
 <p>
-  <strong>Body:</strong>
+  <strong>説明</strong>
   <%= @event.body %>
 </p>
 

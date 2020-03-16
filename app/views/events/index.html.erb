@@ -1,15 +1,49 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
+<h1>展覧会を探す</h1>
+
+  <%= form_tag events_path, method: :get do %>
+   <%= date_field_tag :search_date %>
+   <%= submit_tag %>
+  <% end %>
+
+<div class="search-form">
+  <%= form_with(scope: :search, url: events_path, method: :get, local: true) do |f| %>
+    <div class="field">
+      <%= f.label(:title, User.human_attribute_name(:name)) %>
+      <%= f.text_field :title, value: @search_params[:name] %>
+    </div>
+    
+    <div class="field">
+      <%= f.label(:prefecture_id, User.human_attribute_name(:prefecture_id)) %>
+      <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, selected: @search_params[:prefecture_id], include_blank: t('helpers.select.include_blank')) %>
+      <select name="search[prefecture_id]" id="search_prefecture_id">
+        <option value="">選択</option>
+        <option value="1">北海道</option>
+        <option value="2">青森県</option>
+        省略
+        <option value="46">鹿児島県</option>
+        <option value="47">沖縄県</option>
+      </select>
+    </div>
+    
+    <div class="actions">
+      <%= f.submit(t('helpers.submit.search')) %>
+    </div>
+  <% end %>
+</div>
+<!--今この部分を作成中↑-->
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Event data</th>
-      <th>Event place</th>
-      <th>Event style</th>
-      <th>Body</th>
+      <th>展覧会名</th>
+      <th>日程</th>
+      <th>日程</th>
+      <th>時間</th>
+      <th>開催場所</th>
+      <th>流派</th>
+      <th>説明</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,8 +52,10 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.title %></td>
-        <td><%= event.event_data %></td>
-        <td><%= event.event_place %></td>
+        <td><%= event.event_from_date %></td>
+        <td><%= event.event_to_date %></td>
+        <td><%= event.time %></td>
+        <td><%= event.prefecture %></td>
         <td><%= event.event_style %></td>
         <td><%= event.body %></td>
         <td><%= link_to 'Show', event %></td>
