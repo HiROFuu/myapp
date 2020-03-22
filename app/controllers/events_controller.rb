@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @search_params = event_search_params
-    @events = Event.search(@search_params).includes(:prefecture)
+    @events = Event.search(@search_params)
   end
 
     # 下記コメントアウト分は、↑のdef indexの編集前の文章を残している
@@ -79,10 +79,10 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :event_data, :event_place, :event_style, :body, :event_from_date)
+      params.require(:event).permit(:name, :from_date, :to_date, :from_time, :to_time, :prefecture, :price, :style, :link_url, :count_works, :discription)
     end
     
     def event_search_params
-    params.fetch(:search, {}).permit(:title, :event_data, :event_place, :event_style, :body, :event_from_date, :prefecture_id)
+    params.fetch(:search, {}).permit(:name, :from_date, :prefecture, :style)
     end
 end

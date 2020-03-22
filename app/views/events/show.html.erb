@@ -2,37 +2,50 @@
 
 <p>
   <strong>展覧会名</strong>
-  <%= @event.title %>
+  <%= @event.name %>
 </p>
 
 <p>
-  <strong>開催日</strong>
-  <%= @event.event_from_date %>
+  <strong>開催開始日</strong>
+  <%= @event.from_date %>
+</p>
+
+  <strong>開催終了日</strong>
+  <%= @event.to_date %>
 </p>
 
 <p>
-  <strong>Event data:</strong>
-  <%= @event.event_to_date %>
+  <strong>開始時間</strong>
+  <%= @event.from_time %>
 </p>
-
-<p>
-  <strong>開催時間</strong>
-  <%= @event.Event_time %>
+  
+  <strong>終了時間</strong>
+  <%= @event.to_time %>
 </p>
 
 <p>
   <strong>開催場所</strong>
-  <%= @event.event_place %>
+  <%= @event.prefecture %>
 </p>
 
 <p>
   <strong>流派</strong>
-  <%= @event.event_style %>
+  <%= @event.style %>
+</p>
+
+<p>
+  <strong>料金</strong>
+  <%= @event.price %>
+</p>
+
+<p>
+  <strong>出瓶数</strong>
+  <%= @event.count_works %>
 </p>
 
 <p>
   <strong>説明</strong>
-  <%= @event.body %>
+  <%= @event.discription %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |

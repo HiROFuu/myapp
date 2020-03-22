@@ -1,12 +1,17 @@
 class CreateEvents < ActiveRecord::Migration[5.1]
   def change
     create_table :events do |t|
-      t.string :title
-      t.datetime :event_data
-      t.string :event_place
-      t.string :event_style
-      t.text :body
-      t.string :time
+      t.string :name
+      t.date :from_date
+      t.date :to_date
+      t.time :from_time
+      t.time :to_time
+      t.string :style
+      t.string :prefecture
+      t.integer :price
+      t.integer :count_works
+      t.text :discription
+      t.string :link_url
 
       t.timestamps
     end

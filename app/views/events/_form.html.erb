@@ -12,38 +12,58 @@
   <% end %>
   
   <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :event_title %>
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :name %>
   </div>
 
   <div class="form-group">
-    <%= form.label :event_from_date %>
-    <%= form.date_select :event_from_date, id: :event_event_from_date %>
+    <%= form.label :from_date %>
+    <%= form.date_select :from_date, id: :from_date %>
   </div>
   
   <div class="form-group">
-    <%= form.label :event_to_date %>
-    <%= form.date_select :event_to_date, id: :event_event_to_date %>
+    <%= form.label :to_date %>
+    <%= form.date_select :to_date, id: :to_date %>
   </div>
   
   <div class="field">
-    <%= form.label :event_time%>
-    <%= form.date_select :event_time, id: :event_event_time %>
+    <%= form.label :from_time%>
+    <%= form.time_select :from_time, id: :from_time %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :to_time%>
+    <%= form.time_select :to_time, id: :to_time %>
   </div>
 
   <div class="field">
-    <%= form.label :event_place %>
-    <%= form.text_field :event_place, id: :event_event_place %>
+    <%= form.label :prefecture %>
+    <%= form.text_field :prefecture, id: :prefecture %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :price %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :count_works %>
+    <%= form.text_field :count_works, id: :count_works %>
   </div>
 
   <div class="field">
-    <%= form.label :event_style %> ロゴを選べるようにする。
-    <%= form.text_field :event_style, id: :event_event_style %>
+    <%= form.label :style %> ロゴを選べるようにする。
+    <%= form.text_field :style, id: :style %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :link_url %> ロゴを選べるようにする。
+    <%= form.text_field :link_url, id: :link_url %>
   </div>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, id: :event_body %>
+    <%= form.label :discription %>
+    <%= form.text_area :discription, id: :discription %>
   </div>
 
   <div class="actions">
