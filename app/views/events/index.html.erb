@@ -16,16 +16,21 @@
     
     <div class="field">
       <%= f.label(:prefecture) %>
-      <%= f.text_field :prefecture, value: @search_params[:prefecture] %>
+      <%= f.select :prefecture, value: @search_params[:prefecture] %>
     </div>
     
+    <!--<div class="field">-->
+    <!--  <%= f.label(:prefecture) %>-->
+    <!--  <%= f.select :prefecture, [["---選択してください---"],["大阪府","大阪府"],["東京都","東京都"]] %>-->
+    <!--</div>  value: @search_params[:prefecture] 　が無くなって問題ないのか、確認-->
+  
     <div class="field">
       <%= f.label(:style) %>
       <%= f.text_field :style, value: @search_params[:style] %>
     </div>
     
     <div class="actions">
-      <%= f.submit(t('helpers.submit.search')) %>
+      <%= f.submit('検索') %>
     </div>
   <% end %>
 </div>
