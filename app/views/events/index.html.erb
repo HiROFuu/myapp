@@ -14,15 +14,15 @@
       <%= f.date_field :from_date, value: @search_params[:from_date] %>
     </div>
     
-    <div class="field">
-      <%= f.label(:prefecture) %>
-      <%= f.select :prefecture, value: @search_params[:prefecture] %>
-    </div>
-    
     <!--<div class="field">-->
     <!--  <%= f.label(:prefecture) %>-->
-    <!--  <%= f.select :prefecture, [["---選択してください---"],["大阪府","大阪府"],["東京都","東京都"]] %>-->
-    <!--</div>  value: @search_params[:prefecture] 　が無くなって問題ないのか、確認-->
+    <!--  <%= f.text_field :prefecture, value: @search_params[:prefecture] %>-->
+    <!--</div>-->
+    
+    <div class="field">
+      <%= f.label(:prefecture) %>
+      <%= f.select :prefecture, [[" "],["大阪府","大阪府"],["東京都","東京都"]] %>
+    </div>
   
     <div class="field">
       <%= f.label(:style) %>
@@ -63,7 +63,7 @@
         <td><%= event.from_time.strftime('%H:%M') %></td>
         <td><%= event.to_time.strftime('%H:%M') %></td>
         <td><%= event.prefecture %></td>
-        <td><%= event.style %></td>
+        <td><%= style_logo() %></td>
         <td><%= event.price %></td>
         <td><%= event.count_works %></td>
         <td><%= event.link_url %></td>

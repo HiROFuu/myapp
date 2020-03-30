@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  include EventsHelper
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
@@ -6,6 +7,11 @@ class EventsController < ApplicationController
   def index
     @search_params = event_search_params
     @events = Event.search(@search_params)
+    if @search_params.blank?
+      @events = Event.all
+    else
+      @events = Event.search(@search_params)
+    end
   end
 
     # 下記コメントアウト分は、↑のdef indexの編集前の文章を残している
