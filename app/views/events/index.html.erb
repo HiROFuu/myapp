@@ -21,7 +21,7 @@
     
     <div class="field">
       <%= f.label(:prefecture) %>
-      <%= f.select :prefecture, [[" "],["大阪府","大阪府"],["東京都","東京都"]] %>
+      <%= f.select :prefecture, [["---選択してください---",""],["大阪府","大阪府"],["東京都","東京都"]] %>
     </div>
   
     <div class="field">
@@ -34,7 +34,10 @@
     </div>
   <% end %>
 </div>
-<!--今この部分を作成中↑-->
+
+<div class="search_result">
+  検索結果は<%= @events_counts %>件です。
+</div>
 
 <table>
   <thead>
@@ -63,7 +66,7 @@
         <td><%= event.from_time.strftime('%H:%M') %></td>
         <td><%= event.to_time.strftime('%H:%M') %></td>
         <td><%= event.prefecture %></td>
-        <td><%= style_logo() %></td>
+        <td><%= style_logo(event.style) %></td>
         <td><%= event.price %></td>
         <td><%= event.count_works %></td>
         <td><%= event.link_url %></td>
@@ -76,6 +79,7 @@
   </tbody>
 </table>
 
-<br>
 
+<br>
 <%= link_to 'New Event', new_event_path %>
+<%= paginate @events %>

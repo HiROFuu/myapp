@@ -1,27 +1,20 @@
 class EventsController < ApplicationController
   include EventsHelper
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  require 'date'
 
   # GET /events
-  # GET /events.json
+  # GET /events.json　
   def index
     @search_params = event_search_params
-    @events = Event.search(@search_params)
+    @events = Event.search(@search_params).where('to_date >= ?', Date.today)
+    @events_counts = @events.count
     if @search_params.blank?
-      @events = Event.all
+      @events = Event.all.kaminari_page(params[:page]).per(10).where('to_date >= ?', Date.today)
     else
-      @events = Event.search(@search_params)
+      @events = Event.search(@search_params).kaminari_page(params[:page]).per(10).where('to_date >= ?', Date.today)
     end
   end
-
-    # 下記コメントアウト分は、↑のdef indexの編集前の文章を残している
-    # @search_date = params(:search_date)
-    # if @search_date.blank?
-    #   @events = Event.all
-    # else
-    #   @events = Event.day_search(params(:search_date))
-    # end
-  # end
 
   # GET /events/1
   # GET /events/1.json

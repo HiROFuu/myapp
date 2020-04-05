@@ -17,6 +17,4 @@ class Event < ApplicationRecord
   scope :to_date, -> (from_date) { where('to_date >= ?', from_date) if from_date.present? }
   scope :prefecture_like, -> (prefecture) { where('prefecture LIKE ?', "%#{prefecture}%") if prefecture.present? }
   
-    # ↓上記実装前に記載していた文章
-    #   scope :day_search, -> (search_date) {where("event_from_date <= search_date AND event_to_date >= search_date")}
 end
