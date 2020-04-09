@@ -14,11 +14,6 @@
       <%= f.date_field :from_date, value: @search_params[:from_date] %>
     </div>
     
-    <!--<div class="field">-->
-    <!--  <%= f.label(:prefecture) %>-->
-    <!--  <%= f.text_field :prefecture, value: @search_params[:prefecture] %>-->
-    <!--</div>-->
-    
     <div class="field">
       <%= f.label(:prefecture) %>
       <%= f.select :prefecture, [["---選択してください---",""],["大阪府","大阪府"],["東京都","東京都"]] %>
@@ -66,7 +61,7 @@
         <td><%= event.from_time.strftime('%H:%M') %></td>
         <td><%= event.to_time.strftime('%H:%M') %></td>
         <td><%= event.prefecture %></td>
-        <td><%= style_logo(event.style) %></td>
+        <td><%= image_tag event.style.image.url %></td>
         <td><%= event.price %></td>
         <td><%= event.count_works %></td>
         <td><%= event.link_url %></td>
@@ -81,5 +76,5 @@
 
 
 <br>
-<%= link_to 'New Event', new_event_path %>
+<%= link_to '新規展覧会の登録', new_event_path %>
 <%= paginate @events %>

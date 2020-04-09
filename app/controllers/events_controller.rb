@@ -10,9 +10,9 @@ class EventsController < ApplicationController
     @events = Event.search(@search_params).where('to_date >= ?', Date.today)
     @events_counts = @events.count
     if @search_params.blank?
-      @events = Event.all.kaminari_page(params[:page]).per(10).where('to_date >= ?', Date.today)
+      @events = Event.all.where('to_date >= ?', Date.today).order(:to_date).kaminari_page(params[:page]).per(10)
     else
-      @events = Event.search(@search_params).kaminari_page(params[:page]).per(10).where('to_date >= ?', Date.today)
+      @events = Event.search(@search_params).where('to_date >= ?', Date.today).order(:to_date).kaminari_page(params[:page]).per(10)
     end
   end
 
@@ -78,7 +78,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :from_date, :to_date, :from_time, :to_time, :prefecture, :price, :style, :link_url, :count_works, :discription)
+      params.require(:event).permit(:name, :from_date, :to_date, :from_time, :to_time, :prefecture, :price, :style, :link_url, :count_works, :discription, :style_id)
     end
     
     def event_search_params

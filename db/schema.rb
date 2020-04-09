@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200331133043) do
+ActiveRecord::Schema.define(version: 20200406134758) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20200331133043) do
     t.date "to_date"
     t.time "from_time"
     t.time "to_time"
-    t.string "style"
+    t.integer "style_id"
     t.string "prefecture"
     t.integer "price"
     t.integer "count_works"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20200331133043) do
   end
 
   create_table "styles", force: :cascade do |t|
-    t.binary "image"
     t.string "name"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

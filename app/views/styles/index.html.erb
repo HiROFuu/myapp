@@ -1,0 +1,15 @@
+<h1>登録済ロゴ一覧</h1>
+
+<table>
+  <tbody>
+    <% @styles.each do |style| %>
+      <tr>
+        <td><%= style.name %></td>
+        <td><%= image_tag style.image.url %></td>
+        <td><%= link_to 'Show', style %></td>
+        <td><%= link_to 'Edit', edit_style_path(style) %></td>
+        <td><%= link_to 'Destroy', style, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
