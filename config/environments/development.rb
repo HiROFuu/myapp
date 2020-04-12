@@ -54,7 +54,7 @@ Rails.application.configure do
   
   
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :test
+  config.action_mailer.delivery_method = :letter_opener_web
   host = '6c2ce7544b164fc79caba3452c655185.vfs.cloud9.us-east-2.amazonaws.com' # ここをコピペすると失敗します。自分の環境に合わせてください。
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
   

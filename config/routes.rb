@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :contacts
   resources :posts
   get 'styles/new'
 
@@ -25,5 +26,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :styles
+  
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
 end
