@@ -1,0 +1,20 @@
+<div class="post-index-wrapper">
+  <div class="container">
+    <% @favorite_posts.each do |post| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="post-index-single">
+            <h2 class="post-author">
+              <%= post.user.name %>
+            </h2>
+            <%= image_tag post.image.url %>
+            <i class="far fa-comment"></i>
+            <p class="post-text">
+              <%= post.description %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

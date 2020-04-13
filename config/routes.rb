@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :favorites
+  delete '/favorites', to: 'favorites#destroy'
   resources :contacts
   resources :posts
   get 'styles/new'

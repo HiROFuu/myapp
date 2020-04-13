@@ -18,6 +18,7 @@ gem 'seed-fu'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

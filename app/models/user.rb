@@ -9,6 +9,8 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   has_many :posts
+  has_many :favorites
+  has_many :favorite_posts, through: :favorites, source: 'post'
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
     # 渡された文字列のハッシュ値を返す
