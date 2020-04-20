@@ -4,15 +4,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.includes(:favorite_users)
+    @posts = Post.all.includes(:favorite_users, :comment_users)
+    
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find_by(id: params[:id])
-    @user = @post.user
-    # 変数@favorites_countを定義
     
   end
 

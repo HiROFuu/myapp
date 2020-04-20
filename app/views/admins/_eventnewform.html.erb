@@ -1,0 +1,73 @@
+<%= form_with(model: event, url: admins_eventcreate_path, local: true) do |form| %>
+
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :name %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :from_date %>
+    <%= form.date_select :from_date, id: :from_date %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :to_date %>
+    <%= form.date_select :to_date, id: :to_date %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :from_time%>
+    <%= form.time_select :from_time, id: :from_time %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :to_time%>
+    <%= form.time_select :to_time, id: :to_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prefecture %>
+    <%= form.text_field :prefecture, id: :prefecture %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :price %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :count_works %>
+    <%= form.text_field :count_works, id: :count_works %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :style_id %>
+    <%= form.collection_select :style_id, Style.all, :id, :name %>
+  </div>  
+  
+  <div class="field">
+    <%= form.label :link_url %> 
+    <%= form.text_field :link_url, id: :link_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :discription %>
+    <%= form.text_area :discription, id: :discription %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

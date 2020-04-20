@@ -1,0 +1,9 @@
+<%= form_for @comment do |f| %>
+    <%= f.hidden_field :user_id, value: @comment.user_id %>
+    <%= f.hidden_field :post_id, value: @comment.post_id %>
+    
+    <div class="form-group">
+        <%= f.text_area :content, class: "form-control" %>
+    </div>
+    <%= f.submit 'コメントする', class: "btn btn-black btn-block" %>
+<% end %>

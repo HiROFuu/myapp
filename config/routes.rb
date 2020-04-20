@@ -1,16 +1,21 @@
 Rails.application.routes.draw do
 
   resources :favorites
-  delete '/favorites', to: 'favorites#destroy'
   resources :contacts
   resources :posts
+  resources :events, only:[:index, :destroy]
+  
+  get 'admins/eventnew', to: 'admins#eventnew'
+  post 'admins/eventnew', to: 'admins#eventcreate'
+  post 'admins/eventcreate', to: 'admins#eventcreate'
+  
+  get 'comments/new'
+  post '/comments', to: 'comments#create'
+  
   get 'styles/new'
 
-  resources :events
   get 'password_resets/new'
-
   get 'password_resets/edit'
-
   get 'users/new'
 
   root 'static_pages#home'

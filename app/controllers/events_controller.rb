@@ -22,9 +22,10 @@ class EventsController < ApplicationController
   end
 
   # GET /events/new
-  def new
-    @event = Event.new
-  end
+  # イベントNEWはアドミンだけにさせたい
+  # def new
+  #   @event = Event.new
+  # end
 
   # GET /events/1/edit
   def edit
@@ -32,19 +33,19 @@ class EventsController < ApplicationController
 
   # POST /events
   # POST /events.json
-  def create
-    @event = Event.new(event_params)
+  # def create
+  #   @event = Event.new(event_params)
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: '展覧会情報の登録が完了しました' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @event.save
+  #       format.html { redirect_to @event, notice: '展覧会情報の登録が完了しました' }
+  #       format.json { render :show, status: :created, location: @event }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @event.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
@@ -63,11 +64,14 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # @event.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+    #   format.json { head :no_content }
+  
+    Event.find(params[:id]).destroy
+    flash[:success] = "削除しました"
+    redirect_to events_url
   end
 
   private

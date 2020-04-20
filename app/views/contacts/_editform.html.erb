@@ -31,13 +31,9 @@
     <%= form.text_area :content, id: :contact_content, class: "form-control" %>
   </div>
   
-  <!--<div class="field">-->
-  <!--  <%= form.label :status %>-->
-  <!--  <%= hidden_field_tag :status, [["未対応","未対応"],["対応中","対応中"]] %>-->
-  <!--</div>-->
-  
   <div class="field">
-    <%= form.hidden_field :status, :value => "未対応" %>
+    <%= form.label :status %>
+    <%= form.select :status, [["未対応","未対応"],["対応中","対応中"]] %>
   </div>
 
   <div class="actions">
