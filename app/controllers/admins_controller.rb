@@ -1,12 +1,30 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:show, :edit, :update, :destroy]
+  before_action :set_adminevent, only: [:show, :eventedit, :eventupdate, :eventdestroy]
+  before_action :set_admincontact, only: [:show, :contactedit, :contactupdate, :contactdestroy]
   before_action :admin_user
 
   # GET /admins
   # GET /admins.json
-  # def index
-  #   @admins = Admin.all
-  # end
+  def eventindex
+    @search_params = event_search_params
+    @events = Event.search(@search_params).where('to_date >= ?', Date.today)
+    @events_counts = @events.count
+    if @search_params.blank?
+      @events = Event.all.where('to_date >= ?', Date.today).order(:to_date).kaminari_page(params[:page]).per(10)
+      render action: :eventindex
+    else
+      @events = Event.search(@search_params).where('to_date >= ?', Date.today).order(:to_date).kaminari_page(params[:page]).per(10)
+      render action: :eventindex
+    end
+  end
+  
+  def postindex
+    @posts = Post.all.includes(:favorite_users, :comment_users)
+  end
+  
+  def contactindex
+    @contacts = Contact.all
+  end
 
   # GET /admins/1
   # GET /admins/1.json
@@ -22,15 +40,23 @@ class AdminsController < ApplicationController
   # GET /admins/1/edit
   def edit
   end
-
+  
+  def postedit
+  end
+  
+  def eventedit
+  end
+  
+  def contactedit
+    @contact = Contact.find(params[:id])
+  end
+  
   # POST /admins
   # POST /admins.json
   def eventcreate
    @event = Event.new(event_params)
       if @event.save
-        # format.html { redirect_to @event, notice: '展覧会情報の登録が完了しました' }
-        # format.json { render :show, status: :created, location: @event }
-        redirect_to events_path, success: '展覧会情報の登録が完了しました'
+        redirect_to admins_eventsindex_path, success: '展覧会情報の登録が完了しました'
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -39,7 +65,7 @@ class AdminsController < ApplicationController
     
   # PATCH/PUT /admins/1
   # PATCH/PUT /admins/1.json
-  def update
+  def eventupdate
     respond_to do |format|
       if @admin.update(admin_params)
         format.html { redirect_to @admin, notice: 'Admin was successfully updated.' }
@@ -50,6 +76,16 @@ class AdminsController < ApplicationController
       end
     end
   end
+  
+  def contactupdate
+      if @contact.update(contact_params)
+        redirect_to admins_contactsindex_path, notice: 'Contact was successfully updated.'
+      else
+        format.html { render :edit }
+        format.json { render json: @contact.errors, status: :unprocessable_entity }
+      end
+  end
+  
 
   # DELETE /admins/1
   # DELETE /admins/1.json
@@ -62,11 +98,21 @@ class AdminsController < ApplicationController
   # end
   
   def eventdestroy
-    @event.destroy
-      respond_to do |format|
-        format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-        format.json { head :no_content }
-    end
+     Event.find(params[:id]).destroy
+      flash[:success] = "削除しました"
+      redirect_to admins_eventsindex_url
+  end
+  
+  def postdestroy
+      Post.find(params[:id]).destroy
+       flash[:success] = "削除しました"
+       redirect_to admins_postsindex_url
+  end
+  
+  def contactdestroy
+      Contact.find(params[:id]).destroy
+       flash[:success] = "削除しました"
+       redirect_to admins_contactsindex_url
   end
 
   private
@@ -84,11 +130,24 @@ class AdminsController < ApplicationController
       params.fetch(:admin, {})
     end
     
-    def set_event
+    def set_adminevent
       @event = Event.find(params[:id])
+    end
+    
+    def set_admincontact
+      @contact = Contact.find(params[:id])
     end
     
     def event_params
       params.require(:event).permit(:name, :from_date, :to_date, :from_time, :to_time, :prefecture, :price, :style, :link_url, :count_works, :discription, :style_id)
     end
+    
+    def event_search_params
+    params.fetch(:search, {}).permit(:name, :from_date, :prefecture, :style_id)
+    end
+    
+    def contact_params
+      params.require(:contact).permit(:name, :email, :category, :content, :status)
+    end
+    
 end

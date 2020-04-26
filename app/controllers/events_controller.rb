@@ -28,11 +28,11 @@ class EventsController < ApplicationController
   # end
 
   # GET /events/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
-  # POST /events
-  # POST /events.json
+  # # POST /events
+  # # POST /events.json
   # def create
   #   @event = Event.new(event_params)
 
@@ -49,17 +49,17 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
-  def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @event.update(event_params)
+  #       format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @event }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @event.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /events/1
   # DELETE /events/1.json
@@ -86,6 +86,6 @@ class EventsController < ApplicationController
     end
     
     def event_search_params
-    params.fetch(:search, {}).permit(:name, :from_date, :prefecture, :style)
+    params.fetch(:search, {}).permit(:name, :from_date, :prefecture, :style_id)
     end
 end

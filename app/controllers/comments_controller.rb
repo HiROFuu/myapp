@@ -1,12 +1,6 @@
 class CommentsController < ApplicationController
   
   def new
-    # @comment = Comment.new
-    # @comment.user_id = current_user.id
-    # @comment.post_id = params[:post_id]
-    # respond_to do |format|
-    #   format.html
-    #   format.js
     @comment = Comment.new
     @comment.user_id = current_user.id
     @comment.post_id = params[:post_id]

@@ -30,21 +30,18 @@
             <div id=<%= "comment_new#{post.id}" %>></div>
             <% post.comments.each do |comment| %>
               <div>
-                <p class="post-name">
-                  　<%= comment.user.name %>
-                </p>
                 <p class="post-text">
                     <%= comment.content %>
                 </p>
               </div>
             <% end %>
+             <td><%= link_to 'Edit', admins_postedit_path(id: post.id) %></td>
+             <td><%= link_to 'Destroy', admins_postdelete_path(id: post.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </div>
         </div>
      </div>
     <% end %>
   </div>
   <%= link_to '作品を投稿する', new_post_path %><br>
-  <% if current_user&.admin? %>
-    <%= link_to '管理者作品Indexへ', admins_postsindex_path %>
-  <% end %>
+  <%= link_to 'ユーザー画面へ', posts_path %>
 </div>
