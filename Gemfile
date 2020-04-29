@@ -19,6 +19,12 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'font-awesome-sass'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+gem 'dotenv-rails'
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

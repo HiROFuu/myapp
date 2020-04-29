@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   patch 'admins/contacts/:id/update', to: 'admins#contactupdate', as:'admins_contactupdate'
   delete 'admins/contact/:id', to: 'admins#contactdestroy', as:'admins_contactdelete'
   
+  get 'auth/:provider/callback', to: 'sessions#t_create'
   
   get 'comments/new'
   post '/comments', to: 'comments#create'

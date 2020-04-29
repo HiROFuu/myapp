@@ -1,10 +1,10 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
-  before_save   :downcase_email
+  before_save   :downcase_email, unless: :uid?
   before_create :create_activation_digest
-  validates :name,  presence: true, length: { maximum: 29 }
+  validates :name,  presence: true, unless: :uid?, length: { maximum: 29 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 31 },
+  validates :email, presence: true, unless: :uid?, length: { maximum: 31 },
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :favorite_posts, through: :favorites, source: 'post'
   has_many :comments
   has_many :comment_posts, through: :comments, source: 'post'
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true, unless: :uid?
   
     # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -69,6 +69,37 @@ class User < ApplicationRecord
   # パスワード再設定の期限が切れている場合はtrueを返す
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+  
+  # Twitterログイン認証用
+  # def self.find_or_create_from_auth(auth)
+  #   provider = auth[:provider]
+  #   uid = auth[:uid]
+  #   name = auth[:info][:name]
+  #   image = auth[:info][:image]
+
+  #   self.find_or_create_by(provider: provider, uid: uid) do |user|
+  #     user.name = name
+  #     user.image_url = image
+  #   end
+  # end
+  
+  # Twitterログイン認証用(メール認証対応)
+  def self.find_or_initialize_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    user_name = auth[:info][:name]
+    email = "#{('a'..'z').to_a.shuffle[0..10].join}@gmail.com"
+    password = "foobar"
+    image_url = auth[:info][:image]
+
+    self.find_or_initialize_by(provider: provider, uid: uid) do |user|
+      user.name = user_name
+      user.email = email
+      user.password = password
+      user.image_url = image_url
+      user.activated = true
+    end
   end
 
   private

@@ -58,4 +58,5 @@ Rails.application.configure do
   host = '6c2ce7544b164fc79caba3452c655185.vfs.cloud9.us-east-2.amazonaws.com' # ここをコピペすると失敗します。自分の環境に合わせてください。
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
   
+  config.web_console.whitelisted_ips = '111.239.190.236'
 end
