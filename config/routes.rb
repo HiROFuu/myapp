@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
   get 'users/new'
 
-  root 'static_pages#home'
+  root 'static_pages#home2'
 
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'

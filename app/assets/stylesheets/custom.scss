@@ -258,3 +258,112 @@ input {
  color: #e54747;
  margin-left: 20px;
  }
+
+.fa-comment {
+ width: 25px;
+ height: 30px;
+ font-size: 25px;
+ color: #808080; 
+ margin-left: 20px;
+}
+ 
+ /* Home画面 */
+ 
+.featurette-heading　{
+ color: #99CCFF;
+ }
+ 
+ .featurette-image {
+  width: 400px;
+  height: 400px;
+ }
+
+.featurette-divider {
+  margin: 80px 0px;
+}
+
+ /* ログイン画面 */
+ 
+ 
+.fab {
+ color: #FFC312;
+ font-size: 80px;
+ margin: 0px 0px 0px 10px;
+}
+
+.login-title {
+  color: #444;
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+}
+
+.login-title:before, .login-title:after {
+	content: "";
+	flex-grow: 1;
+	height: 1px;
+	background: #444;
+	display: block;
+}
+.login-title:before {
+	margin-right: .4em;
+}
+.login-title:after {
+	margin-left: .4em;
+}
+
+
+ /* 検索画面 */
+.exhibition-image {
+  width: 100%;
+}
+
+.search_result_number {
+  margin: 10px 0px;
+}
+
+.search-field {
+  margin: 15px 0px;
+}
+
+.search-form {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #6091d3;/*文字色*/
+  background: #FFF;
+  border: solid 3px #6091d3;/*線*/
+  border-radius: 10px;/*角の丸み*/
+}
+
+.search_result {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #6091d3;/*文字色*/
+  background: #FFF;
+  border: solid 3px #6091d3;/*線*/
+  border-radius: 10px;/*角の丸み*/
+}
+
+.exhibition-image {
+  width: 100px;
+  height: 200px;
+}
+
+/* 問い合わせ画面 */
+
+.btn.btn-large {
+  background: #74cfae;
+  border: 0;
+  padding: 10px 30px;
+  color: #fff;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+/* ABOUT画面 */
+
+.abouttitle {
+  color: #74cfae;
+}

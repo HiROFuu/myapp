@@ -1,0 +1,96 @@
+<p id="notice"><%= notice %></p>
+
+<h1>展覧会を探す</h1>
+
+<div class="search-form">
+  <%= form_with(scope: :search, url: events_path, method: :get, local: true) do |f| %>
+    <div class="field">
+      <%= f.label(:name) %>
+      <%= f.text_field :name, value: @search_params[:name] %>
+    </div>
+    
+    <div class="field">
+      <%= f.label "開催日" %>
+      <%= f.date_field :from_date, value: @search_params[:from_date] %>
+    </div>
+    
+    <div class="field">
+      <%= f.label(:prefecture) %>
+      <%= f.select :prefecture, [["---選択してください---",""],["大阪府","大阪府"],["東京都","東京都"]] %>
+    </div>
+  
+    <!--<div class="field">-->
+    <!--  <%#= f.label "流派の選択" %>-->
+    <!--  <%#= f.text_field :style_id, value: @search_params[:style] %>-->
+    <!--</div>-->
+    
+    <div class="field">
+      <%= f.label :style_id %>
+      <%= f.collection_select :style_id, Style.all, :id, :name %>
+    </div>
+    
+    <div class="actions">
+      <%= f.submit('検索') %>
+    </div>
+  <% end %>
+</div>
+
+<div class="search_result">
+  検索結果は<%= @events_counts %>件です。
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>展覧会名</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>開始時間</th>
+      <th>終了時間</th>
+      <th>開催場所</th>
+      <th>流派</th>
+      <th>参加費</th>
+      <th>出瓶数</th>
+      <th>URL</th>
+      <th>説明</th>
+      <!--<th colspan="3"></th>-->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.from_date %></td>
+        <td><%= event.to_date %></td>
+        <td><%= event.from_time.strftime('%H:%M') %></td>
+        <td><%= event.to_time.strftime('%H:%M') %></td>
+        <td><%= event.prefecture %></td>
+        <td><%= image_tag event.style.image.url %></td>
+        <td><%= event.price %></td>
+        <td><%= event.count_works %></td>
+        <td><%= event.link_url %></td>
+        <td><%= event.discription %></td>
+        
+<% 
+=begin
+%>
+        <td><%= link_to 'Show', events_path %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% 
+=end 
+%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+<% if current_user&.admin? %>
+  <%= link_to '新規展覧会の登録', admins_eventnew_path %><br>
+  <%= link_to '管理者用イベント一覧へ', admins_eventsindex_path %>
+<% end %>
+<%= paginate @events %>

@@ -2,89 +2,81 @@
 
 <h1>展覧会を探す</h1>
 
-<div class="search-form">
-  <%= form_with(scope: :search, url: events_path, method: :get, local: true) do |f| %>
-    <div class="field">
-      <%= f.label(:name) %>
-      <%= f.text_field :name, value: @search_params[:name] %>
-    </div>
-    
-    <div class="field">
-      <%= f.label "開催日" %>
-      <%= f.date_field :from_date, value: @search_params[:from_date] %>
-    </div>
-    
-    <div class="field">
-      <%= f.label(:prefecture) %>
-      <%= f.select :prefecture, [["---選択してください---",""],["大阪府","大阪府"],["東京都","東京都"]] %>
-    </div>
+<%= form_with(scope: :search, url: events_path, method: :get, local: true) do |f| %>
+<div class="container">
   
-    <!--<div class="field">-->
-    <!--  <%#= f.label "流派の選択" %>-->
-    <!--  <%#= f.text_field :style_id, value: @search_params[:style] %>-->
-    <!--</div>-->
-    
-    <div class="field">
-      <%= f.label :style_id %>
-      <%= f.collection_select :style_id, Style.all, :id, :name %>
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <div class="search-form">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="search-field">
+              <%= f.label "開催日を指定する" %>
+              <%= f.date_field :from_date, value: @search_params[:from_date] %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="search-field">
+              <%= f.label "開催場所を指定する" %>
+              <%= f.select :prefecture, [["---選択してください---",""],["大阪府","大阪府"],["東京都","東京都"]] %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="search-field">
+              <%= f.label "流派を指定する" %>
+              <%= f.collection_select :style_id, Style.all, :id, :name %>
+            </div>
+          </div>
+        <div class="actions">
+          <div class="col-md-offset-3 col-md-6">
+            <%= f.submit "この条件で検索する", class: "btn btn-lg btn-primary btn-block"%>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
-    
-    <div class="actions">
-      <%= f.submit('検索') %>
+  </div>
+<% end %>
+      <div class="search_result_number">
+        <div class="row">
+          <div class="col-md-offset-4 col-md-4">
+           <h4><%= @events_counts %>件該当しました</h4>
+          </div>
+        </div>
+      </div>
+  
+  
+
+<!--<div class="container">-->
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <div class="row">
+          <% @events.each do |event| %>
+            <div class="col-md-6 search_result">
+              <div class="card shadow-sm">
+                <div class="col-md-4">
+                  <%= image_tag 'home/image4.jpg', class: "exhibition-image img-fluid mx-auto", alt: "展覧会画像" %>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h4 class="card-title">展覧会名称：<%= event.name %></h4>
+                      <p class="card-text">
+                        開始日：<%= event.from_date %><br>
+                        終了日：<%= event.to_date %><br>
+                        都道府県：<%= event.prefecture %><br>
+                        流派：<%= image_tag event.style.image.url %><br>
+                        <%= link_to '詳しくはこちら', event_path(id: event.id) %>
+                        </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
 </div>
 
-<div class="search_result">
-  検索結果は<%= @events_counts %>件です。
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th>展覧会名</th>
-      <th>開始日</th>
-      <th>終了日</th>
-      <th>開始時間</th>
-      <th>終了時間</th>
-      <th>開催場所</th>
-      <th>流派</th>
-      <th>参加費</th>
-      <th>出瓶数</th>
-      <th>URL</th>
-      <th>説明</th>
-      <!--<th colspan="3"></th>-->
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.name %></td>
-        <td><%= event.from_date %></td>
-        <td><%= event.to_date %></td>
-        <td><%= event.from_time.strftime('%H:%M') %></td>
-        <td><%= event.to_time.strftime('%H:%M') %></td>
-        <td><%= event.prefecture %></td>
-        <td><%= image_tag event.style.image.url %></td>
-        <td><%= event.price %></td>
-        <td><%= event.count_works %></td>
-        <td><%= event.link_url %></td>
-        <td><%= event.discription %></td>
-        
-<% 
-=begin
-%>
-        <td><%= link_to 'Show', events_path %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<% 
-=end 
-%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 
 <br>

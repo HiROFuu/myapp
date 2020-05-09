@@ -1,12 +1,13 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-        <%= link_to "花乃國", root_path, id: "logo" %>
+        <%= link_to "FlowerTimes", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "オンライン展覧会", posts_path %></li>
         <li><%= link_to "展覧会を探す", events_path %></li>
         <li><%= link_to "いけばなってなに？", whatsikebana_path %></li>
+        <li><%= link_to "FlowerTimesってなんやねん", about_path %></li>
         <li><%= link_to "お問い合わせ", new_contact_path %></li>
         <% if logged_in? %>
           <li><%= link_to "Users", users_path %></li>

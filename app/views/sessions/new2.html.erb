@@ -1,0 +1,32 @@
+<% provide(:title, "Log in") %>
+
+<form class="form-signin">
+  
+<h1 class="h3 mb-3 font-weight-normal">ログインする</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: login_path) do |f| %>
+      <span>
+        <i class="fab fa-facebook-square"></i>
+      </span>
+      <%= f.email_field :email, class: 'form-control', placeholder: "メールアドレス" %>
+      <%= f.password_field :password, class: 'form-control', placeholder: "パスワード" %>
+      <%= link_to "パスワードをお忘れですか？", new_password_reset_path %>
+      
+      <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span>ログイン情報を保存する</span>
+      <% end %>
+
+      <%= f.submit "ログイン", class: "btn btn-lg btn-primary btn-block" %>
+    <% end %>
+
+    <p><%= link_to "ユーザー登録が未だの方はコチラ", signup_path %></p>
+    <%= link_to "Twitterアカウントでログイン", "/auth/twitter" %><br>
+    <%= link_to "Facebookアカウントでログイン", "/auth/facebook" %><br>
+    <%= link_to "Googleアカウントでログイン", "/auth/google_oauth2" %>
+  </div>
+</div>
+
+</form>

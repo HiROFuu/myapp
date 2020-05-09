@@ -13,17 +13,24 @@
 
 　<%= form.hidden_field :user_id, value: current_user.id %>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :post_description %>
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
 
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image, id: :post_image %>
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :description, id: :post_description, placeholder: "作品説明(花材やポイントなど)" %>
+      </div>
+    
+      <div class="field">
+        <%= form.label :image %>
+        <%= form.file_field :image, id: :post_image %>
+      </div>
+    
+      <div class="post_submit">
+        <%= form.submit class: "btn btn-large" %>
+      </div>
+    <% end %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

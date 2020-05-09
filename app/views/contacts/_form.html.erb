@@ -10,40 +10,45 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :contact_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :contact_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.select :category,[["---選択してください---",""],["お問い合わせ","お問い合わせ"],["掲載希望","掲載希望"],["機能改善要望","機能改善要望"]] %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :contact_content, class: "form-control" %>
-  </div>
   
-  <!--<div class="field">-->
-  <!--  <%= form.label :status %>-->
-  <!--  <%= hidden_field_tag :status, [["未対応","未対応"],["対応中","対応中"]] %>-->
-  <!--</div>-->
-  
-  <div class="field">
-    <%= form.hidden_field :status, :value => "未対応" %>
-  </div>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+          <div class="field">
+            <%= form.text_field :name, id: :contact_name, placeholder: "お名前"  %>
+          </div>
+        
+          <div class="field">
+            <%= form.text_field :email, id: :contact_email, placeholder: "メールアドレス" %>
+          </div>
+        
+          <div class="field">
+            <%= form.select :category,[["---カテゴリーを選択してください---",""],["お問い合わせ","お問い合わせ"],["掲載希望","掲載希望"],["機能改善要望","機能改善要望"]] %>
+          </div>
+        
+          <div class="field">
+            <%= form.text_area :content, id: :contact_content, placeholder: "お問い合わせ内容をご記入ください" ,class: "form-control" %>
+          </div>
+          
+          <!--<div class="field">-->
+          <!--  <%= form.label :status %>-->
+          <!--  <%= hidden_field_tag :status, [["未対応","未対応"],["対応中","対応中"]] %>-->
+          <!--</div>-->
+          
+          <div class="field">
+            <%= form.hidden_field :status, :value => "未対応" %>
+          </div>
+        
+          <div class="contactform_send">
+            <%= form.submit "問い合わせする", class: "btn btn-large"%>
+          </div>
+        <% end %>
+            
+        </div>
+    </div>
+</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+  
 <% if current_user&.admin? %>
     <%= link_to '管理者用問い合わせ一覧へ', admins_contactsindex_path %>
 <% end %><br>
