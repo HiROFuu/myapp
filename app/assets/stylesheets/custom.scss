@@ -336,18 +336,25 @@ input {
   border-radius: 10px;/*角の丸み*/
 }
 
-.search_result {
-  padding: 0.5em 1em;
-  margin: 2em 0;
+.col-md-6.search_result {
+
+  padding: 20px;
   font-weight: bold;
   color: #6091d3;/*文字色*/
   background: #FFF;
+
+}
+
+.search_result_contents {
+  padding: 0.5em 0.5em;
+  margin: 10px 10px;
   border: solid 3px #6091d3;/*線*/
   border-radius: 10px;/*角の丸み*/
 }
 
+
 .exhibition-image {
-  width: 100px;
+  width: 100%;
   height: 200px;
 }
 

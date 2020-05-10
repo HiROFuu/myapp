@@ -1,0 +1,27 @@
+<%= form_with(model: eventimage, url: admins_eventimagecreate_path, local: true) do |f| %>
+  <% if eventimage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(eventimage.errors.count, "error") %> prohibited this eventimage from being saved:</h2>
+
+      <ul>
+      <% eventimage.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          
+        　<div class="form-group">
+            <%= f.label :image %>
+            <%= f.file_field :image%>
+          </div>
+
+          <%= f.submit '登録', class: 'btn btn-black btn-block' %>
+
+        <% end %>

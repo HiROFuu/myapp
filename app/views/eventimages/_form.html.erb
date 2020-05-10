@@ -1,0 +1,17 @@
+<%= form_with(model: eventimage, local: true) do |form| %>
+  <% if eventimage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(eventimage.errors.count, "error") %> prohibited this eventimage from being saved:</h2>
+
+      <ul>
+      <% eventimage.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -5,7 +5,7 @@
     <% @styles.each do |style| %>
       <tr>
         <td><%= style.name %></td>
-        <td><%= image_tag style.image.url %></td>
+        <td><%= image_tag style.image.url unless style.image.blank? %></td>
         <td><%= link_to 'Show', style %></td>
         <td><%= link_to 'Edit', edit_style_path(style) %></td>
         <td><%= link_to 'Destroy', style, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -13,3 +13,6 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to '新規展覧会の登録', admins_eventnew_path %><br>
+<%= link_to 'ユーザー用イベント一覧へ', events_path %><br>
+<%= link_to '流派のロゴ新規登録', new_style_path %><br>

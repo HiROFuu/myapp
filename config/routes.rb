@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   get 'admins/contacts/:id/edit', to: 'admins#contactedit', as:'admins_contactedit'
   patch 'admins/contacts/:id/update', to: 'admins#contactupdate', as:'admins_contactupdate'
   delete 'admins/contact/:id', to: 'admins#contactdestroy', as:'admins_contactdelete'
-  
+  get 'admins/eventimagesindex', to: 'admins#eventimageindex'
+  get 'admins/eventimagenew', to: 'admins#eventimagenew'
+  post 'admins/eventimagecreate', to: 'admins#eventimagecreate'
+  delete 'admins/eventimage/:id', to: 'admins#eventimagedestroy', as:'admins_eventimagedelete'
+
   get 'auth/:provider/callback', to: 'sessions#t_create'
   
   get 'comments/new'

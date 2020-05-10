@@ -1,0 +1,38 @@
+<h1>展覧会画像一覧</h1>
+<table>
+  <tbody>
+    <% @eventimages.each do |eventimage| %>
+      <tr>
+        <td><%= eventimage.name %></td>
+        <td><%= image_tag eventimage.image.url unless eventimage.image.blank? %></td>
+        <td><%= link_to 'Destroy', admins_eventimagedelete_path(id: eventimage.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'New Eventimage', admins_eventimagenew_path %>
+
+
+
+<!--<p id="notice"><%= notice %></p>-->
+
+<!--<h1>Eventimages</h1>-->
+
+<!--<table>-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th colspan="3"></th>-->
+<!--    </tr>-->
+<!--  </thead>-->
+
+<!--  <tbody>-->
+<!--    <% @eventimages.each do |eventimage| %>-->
+<!--      <tr>-->
+<!--        <td><%= link_to 'Destroy', admins_eventimagedelete_path(id: eventimage.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+<!--      </tr>-->
+<!--    <% end %>-->
+<!--  </tbody>-->
+<!--</table>-->
+
+<!--<br>-->
+

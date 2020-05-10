@@ -7,6 +7,7 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.time :from_time
       t.time :to_time
       t.integer :style_id
+      t.integer :eventimage_id
       t.string :prefecture
       t.integer :price
       t.integer :count_works

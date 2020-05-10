@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   
   belongs_to :style
+  belongs_to :eventimage
 
   scope :search, -> (search_params) do
     return if search_params.blank?

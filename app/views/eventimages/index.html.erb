@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Eventimages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @eventimages.each do |eventimage| %>
+      <tr>
+        <td><%= link_to 'Show', eventimage %></td>
+        <td><%= link_to 'Edit', edit_eventimage_path(eventimage) %></td>
+        <td><%= link_to 'Destroy', eventimage, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Eventimage', new_eventimage_path %>

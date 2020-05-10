@@ -58,6 +58,11 @@
   </div>  
   
   <div class="field">
+    <%= form.label :eventimage_id %>
+    <%= form.collection_select :eventimage_id, Eventimage.all, :id, :name %>
+  </div>
+  
+  <div class="field">
     <%= form.label :link_url %> 
     <%= form.text_field :link_url, id: :link_url %>
   </div>
@@ -71,3 +76,6 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<%= link_to 'イベントイメージ画像の登録', admins_eventimagenew_path %><br>
+<%= link_to '流派のロゴ新規登録', new_style_path %><br>

@@ -22,6 +22,10 @@ class AdminsController < ApplicationController
     @posts = Post.all.includes(:favorite_users, :comment_users)
   end
   
+  def eventimageindex
+    @eventimages = Eventimage.all
+  end
+  
   def contactindex
     @contacts = Contact.all
   end
@@ -35,6 +39,10 @@ class AdminsController < ApplicationController
   # EventNEWはアドミンだけができるようにしたい
   def eventnew
     @event = Event.new
+  end
+  
+  def eventimagenew
+    @eventimage = Eventimage.new
   end
 
   # GET /admins/1/edit
@@ -61,6 +69,17 @@ class AdminsController < ApplicationController
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
+  end
+  
+  def eventimagecreate
+    @eventimage = Eventimage.new(eventimage_params)
+
+    if @eventimage.save
+      redirect_to admins_eventimagesindex_path, success: '展覧会画像の登録に成功しました'
+    else
+      flash.now[:danger] = "失敗しました"
+      render :new
+    end
   end
     
   # PATCH/PUT /admins/1
@@ -103,6 +122,12 @@ class AdminsController < ApplicationController
       redirect_to admins_eventsindex_url
   end
   
+  def eventimagedestroy
+      Eventimage.find(params[:id]).destroy
+      flash[:success] = "削除しました"
+      redirect_to admins_eventimagesindex_url
+  end
+    
   def postdestroy
       Post.find(params[:id]).destroy
        flash[:success] = "削除しました"
@@ -139,7 +164,7 @@ class AdminsController < ApplicationController
     end
     
     def event_params
-      params.require(:event).permit(:name, :from_date, :to_date, :from_time, :to_time, :prefecture, :price, :style, :link_url, :count_works, :discription, :style_id)
+      params.require(:event).permit(:name, :from_date, :to_date, :from_time, :to_time, :prefecture, :price, :style, :link_url, :count_works, :discription, :style_id, :eventimage_id)
     end
     
     def event_search_params
@@ -150,4 +175,7 @@ class AdminsController < ApplicationController
       params.require(:contact).permit(:name, :email, :category, :content, :status)
     end
     
+    def eventimage_params
+      params.require(:eventimage).permit(:image, :name)
+    end
 end
