@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>展覧会名</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>開催開始日</strong>
+  <%= @event.from_date %>
+</p>
+
+  <strong>開催終了日</strong>
+  <%= @event.to_date %>
+</p>
+
+<p>
+  <strong>開始時間</strong>
+  <%= @event.from_time %>
+</p>
+  
+  <strong>終了時間</strong>
+  <%= @event.to_time %>
+</p>
+
+<p>
+  <strong>開催場所</strong>
+  <%= @event.prefecture %>
+</p>
+
+<p>
+  <strong>流派</strong>
+  <%= @event.style %>
+</p>
+
+<p>
+  <strong>料金</strong>
+  <%= @event.price %>
+</p>
+
+<p>
+  <strong>出瓶数</strong>
+  <%= @event.count_works %>
+</p>
+
+<p>
+  <strong>説明</strong>
+  <%= @event.discription %>
+</p>
+
+
+<%= link_to 'Back', events_path %>

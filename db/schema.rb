@@ -52,6 +52,9 @@ ActiveRecord::Schema.define(version: 20200509091422) do
     t.integer "count_works"
     t.text "discription"
     t.string "link_url"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

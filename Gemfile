@@ -24,7 +24,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
-
+gem "gmaps4rails"
+gem "geocoder"
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'

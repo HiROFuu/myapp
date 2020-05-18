@@ -164,7 +164,7 @@ class AdminsController < ApplicationController
     end
     
     def event_params
-      params.require(:event).permit(:name, :from_date, :to_date, :from_time, :to_time, :prefecture, :price, :style, :link_url, :count_works, :discription, :style_id, :eventimage_id)
+      params.require(:event).permit(:name, :from_date, :to_date, :from_time, :to_time, :prefecture, :price, :style, :link_url, :count_works, :discription, :style_id, :eventimage_id, :address,:latitude, :longitude)
     end
     
     def event_search_params
@@ -178,4 +178,6 @@ class AdminsController < ApplicationController
     def eventimage_params
       params.require(:eventimage).permit(:image, :name)
     end
+    
+    
 end

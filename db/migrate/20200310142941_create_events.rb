@@ -13,6 +13,9 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.integer :count_works
       t.text :discription
       t.string :link_url
+      t.string :address
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end

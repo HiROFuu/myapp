@@ -24,7 +24,7 @@
           <div class="col-md-4">
             <div class="search-field">
               <%= f.label "流派を指定する" %>
-              <%= f.collection_select :style_id, Style.all, :id, :name %>
+              <%= f.collection_select :style_id, Style.all, :id, :name, include_blank: "お選びください" %>
             </div>
           </div>
         <div class="actions">

@@ -1,5 +1,86 @@
 <p id="notice"><%= notice %></p>
 
+<h1>展覧会情報詳細</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 event_image">
+            <%= image_tag @event.eventimage.image.url, class: "exhibition-image img-fluid mx-auto", alt: "展覧会画像" %>
+          <div id='map'></div>
+  
+            </style>
+            <script type="text/javascript">
+              handler = Gmaps.build('Google');
+              handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
+                markers = handler.addMarkers([
+                  {
+                    "lat": <%= @event.latitude %>,
+                    "lng": <%= @event.longitude %>,
+          		  "infowindow": '<p><%= @event.name %></p><p><%= @event.address %></p><p><%= link_to "Googleマップで見る","https://maps.google.co.jp/maps?q=loc:#{@event.latitude},#{@event.longitude}&iwloc=J",target: "_blank" %></p>'
+                  }
+                ]);
+                handler.bounds.extendWith(markers);
+                handler.fitMapToBounds();
+                handler.getMap().setZoom(17);
+              });
+            </script>
+          
+        </div>
+        <div class="col-md-8">
+            <table class="table">
+                <tbody>
+                    <tr>
+                      <th scope="row">展覧会名</th>
+                      <td><%= @event.name %></td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">開催期間</th>
+                      <td><%= @event.from_date %>〜<%= @event.to_date %></td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">会場時間</th>
+                      <td><%= @event.from_time %>〜<%= @event.to_time %></td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">流派</th>
+                      <td><%= image_tag @event.style.image.url %></td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">料金</th>
+                      <td><%= @event.price %></td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">出瓶数(作品数)</th>
+                      <td><%= @event.count_works %></td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">展覧会説明</th>
+                      <td><%= @event.discription %></td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">開催場所</th>
+                      <td><%= @event.address %></td>
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row">URL</th>
+                      <td><%= @event.link_url %></td>
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+</div>
+
 <p>
   <strong>展覧会名</strong>
   <%= @event.name %>
@@ -48,5 +129,40 @@
   <%= @event.discription %>
 </p>
 
+<%= link_to "https://twitter.com/share?url=#{request.url}", title: 'Twitter', target: '_blank' do %>
+  <span class="fab fa-twitter-square"></span>
+<% end %>
+<!--下はいずれトップページに埋め込みたい-->
+<!--<div class="line-it-button" data-lang="ja" data-type="share-b" data-ver="3" data-url="https://6c2ce7544b164fc79caba3452c655185.vfs.cloud9.us-east-2.amazonaws.com/events/" data-color="default" data-size="small" data-count="true" style="display: none;"></div>-->
+<!-- <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>-->
+<!--<br>-->
 
+<script language="JavaScript">
+  function line_button_tag(){
+    var tag= "<div class='line-it-button' data-lang='ja' data-type='share-a' data-ver='2' data-url='{0}' style='display: none;'></div>";
+    tag = tag.replace(/\{0\}/g, location.href);
+    return tag;
+  }
+</script>
+<script language="JavaScript">document.write(line_button_tag());</script>
+ 
+<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+ 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+ 
+<script language="JavaScript">
+  function fb_button_tag(){
+   var tag= '<div class="fb-like" data-href="{0}" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>';
+   tag = tag.replace(/\{0\}/g, location.href);
+   return tag;
+  }
+</script>
+<script language="JavaScript">document.write(fb_button_tag());</script>
 <%= link_to 'Back', events_path %>

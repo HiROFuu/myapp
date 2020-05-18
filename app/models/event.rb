@@ -2,6 +2,9 @@ class Event < ApplicationRecord
   
   belongs_to :style
   belongs_to :eventimage
+  
+  geocoded_by :address
+  after_validation :geocode
 
   scope :search, -> (search_params) do
     return if search_params.blank?

@@ -5,6 +5,7 @@
 
 body {
   padding-top: 60px;
+  background-color: #EEEEEE;
 }
 
 section {
@@ -55,7 +56,7 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
+  color: #74cfae;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -66,6 +67,17 @@ p {
   color: #fff;
   text-decoration: none;
 }
+
+.navbar-inverse　{
+  color: #EEEEEE;
+  
+}
+
+.navbar-nav :hover{
+  color: #74cfae;
+  background-color: #74cfae;
+}
+
 
 /* footer */
 
@@ -280,6 +292,11 @@ input {
 
 .featurette-divider {
   margin: 80px 0px;
+  color: #333333;
+}
+
+.featurette-top {
+  margin-top: 50px;
 }
 
  /* ログイン画面 */
@@ -358,6 +375,11 @@ input {
   height: 200px;
 }
 
+#map {
+  height: 400px;
+  width: 100%;
+  }
+
 /* 問い合わせ画面 */
 
 .btn.btn-large {
@@ -373,4 +395,8 @@ input {
 
 .abouttitle {
   color: #74cfae;
+}
+
+.bodyc {
+  background-color: #fff;
 }
