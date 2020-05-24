@@ -1,10 +1,16 @@
 <main role="main">
 
   <div class="container marketing">
-    <div class="row featurette-top">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">お気に入りの作品を見つける。<span class="text-muted">オンライン展覧会</span></h2>
-        <p class="lead">ギャラリーでお気に入りの作品を見つけよう</p>
+    <div class="row featurette-top position-relative">
+      <div class="col-md-7 featurette-text position-static">
+        <h2 class="featurette-heading" style="color:#74cfae; font-weight: bold;">オンライン展覧会</h2>
+        <p class="lead">作品を投稿するも良し<br>お気に入りの作品を探すも良し</p>
+        <div class="row col-md-6 col-md-offset-3">
+          <%= link_to posts_path, class: "btn-gradient-radius mx-auto stretched-link" do %>
+            <h4 class="detail-link">詳細はコチラ</h4>
+          <% end %>
+        </div>
+
       </div>
       <div class="col-md-5">
         <%= image_tag 'home/image1.jpg', class: "featurette-image img-fluid mx-auto", alt: "イメージ" %>
@@ -17,34 +23,44 @@
       <div class="col-md-5">
         <%= image_tag 'home/image2.jpg', class: "featurette-image img-fluid mx-auto", alt: "イメージ" %>
       </div>
-      <div class="col-md-7">
-        <h2 class="featurette-heading">展覧会を探す。<span class="text-muted">流派にとらわれず探せます</span></h2>
-        <p class="lead">日本中で開催されている生け花の展覧会情報を掲載！あなたに合った展覧会がきっと見つかる</p>
+      <div class="col-md-7 featurette-text">
+        <h2 class="featurette-heading" style="color:#74cfae; font-weight: bold;">展覧会を探す</h2>
+        <p class="lead">日本中で開催されている生け花の展覧会情報を掲載！<br>あなたに合った展覧会がきっと見つかる！</p>
+        <div class="row col-md-6 col-md-offset-3">
+          <%= link_to events_path, class: "btn-gradient-radius mx-auto stretched-link" do %>
+            <h4 class="detail-link">詳細はコチラ</h4>
+          <% end %>
+        </div>
       </div>
       
     </div>
     
-    <hr class="featurette-divider">
+    <!--<hr class="featurette-divider">-->
 
     <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">お花屋さんのクチコミ検索。<span class="text-muted">まったく新しい花屋体験</span></h2>
-        <p class="lead">お花が安い、種類が多い、新鮮など、いろんなお花屋さんと出会いましょう！！</p>
+      <div class="col-md-7 order-md-2 featurette-text">
+        <h2 class="featurette-heading" style="color:#74cfae; font-weight: bold;">お花屋さん検索</h2>
+        <p class="lead">お花が安い、種類が多い、新鮮などなど<br>いろんな条件で検索できます！</p>
+          <div class="row col-md-6 col-md-offset-3">
+            <%= link_to posts_path, class: "btn-gradient-radius mx-auto stretched-link" do %>
+              <h4 class="detail-link">詳細はコチラ</h4>
+            <% end %>
+          </div>
       </div>
       <div class="col-md-5">
         <%= image_tag 'home/image3.jpg', class: "featurette-image img-fluid mx-auto", alt: "イメージ" %>
       </div>
     </div>
 
-    <hr class="featurette-divider">
+    <!--<hr class="featurette-divider">-->
     
     <div class="row featurette">
       <div class="col-md-5">
         <%= image_tag 'home/image4.jpg', class: "featurette-image img-fluid mx-auto", alt: "イメージ" %>
       </div>
       <div class="col-md-7">
-        <h2 class="featurette-heading">展覧会でのマナー・ルール。<span class="text-muted">意外と知られていないアレ</span></h2>
-            <p class="lead">展覧会に行くなら知っておいたほうがいいルール、ご紹介します！</p>
+        <h2 class="featurette-heading" style="color:#74cfae; font-weight: bold;">展覧会でのマナー・ルール</h2>
+            <p class="lead">展覧会に行く際に知っておいたほうがいいルール、ご紹介します！</p>
       </div>
     </div>
 

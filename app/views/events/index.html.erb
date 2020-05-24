@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>展覧会を探す</h1>
+<h1 class="event_title">展覧会を探す</h1>
 
 <%= form_with(scope: :search, url: events_path, method: :get, local: true) do |f| %>
 <div class="container">
@@ -29,7 +29,7 @@
           </div>
         <div class="actions">
           <div class="col-md-offset-3 col-md-6">
-            <%= f.submit "この条件で検索する", class: "btn btn-lg btn-primary btn-block"%>
+            <%= f.submit "この条件で検索する", class: "btn btn-large"%>
           </div>
         </div>
       </div>
@@ -45,15 +45,16 @@
         </div>
       </div>
   
-  
+<div class="events_paginate"><%= paginate @events %></div>  
 
 <!--<div class="container">-->
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="row">
+          
           <% @events.each do |event| %>
             <div class="card col-md-6 search_result">
-              <div class="row search_result_contents">
+              <div class="row search_result_contents">  
                 <div class="search_result_module">
                 <!--<div class="card shadow">-->
                   <div class="col-md-5">
@@ -67,12 +68,13 @@
                           終了日：<%= event.to_date %><br>
                           都道府県：<%= event.prefecture %><br>
                           流派：<%= image_tag event.style.image.url %><br>
-                          <%= link_to '詳しくはこちら', event_path(id: event.id) %>
+                          <%= link_to '詳しくはこちら', event_path(id: event.id), class: "btn-flat-border" %>
                         </p>
                     </div>
                   </div>
                 </div>
               <!--</div>-->
+              
               </div>
             </div>
           <% end %>
@@ -89,4 +91,5 @@
   <%= link_to '新規展覧会の登録', admins_eventnew_path %><br>
   <%= link_to '管理者用イベント一覧へ', admins_eventsindex_path %>
 <% end %>
-<%= paginate @events %>
+<br>
+<div class="events_paginate"><%= paginate @events %></div>

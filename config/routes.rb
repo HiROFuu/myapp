@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
   get  'whatsikebana', to: 'static_pages#whatsikebana'
+  get  '/terms', to:'static_pages#terms'
+  get  '/privacy', to:'static_pages#privacy'
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   get    '/login',   to: 'sessions#new'

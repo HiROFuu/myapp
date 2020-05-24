@@ -41,7 +41,7 @@
                     
                     <tr>
                       <th scope="row">会場時間</th>
-                      <td><%= @event.from_time %>〜<%= @event.to_time %></td>
+                      <td><%= @event.from_time.strftime('%H:%M') %>〜<%= @event.to_time.strftime('%H:%M') %></td>
                     </tr>
                     
                     <tr>
@@ -71,98 +71,58 @@
                     
                     <tr>
                       <th scope="row">URL</th>
-                      <td><%= @event.link_url %></td>
+                      <td><%= raw Rinku.auto_link (@event.link_url) %></td>
                     </tr>
+                    
+                    
                     
                 </tbody>
                 
             </table>
+            
+            <%= link_to "https://twitter.com/share?url=#{request.url}", title: 'Twitter', target: '_blank' do %>
+              <span class="fab fa-twitter-square"></span>
+            <% end %>
+            
+            <script language="JavaScript">
+            function line_button_tag(){
+              var tag= "<div class='line-it-button' data-lang='ja' data-type='share-a' data-ver='2' data-url='{0}' style='display: none;'></div>";
+              tag = tag.replace(/\{0\}/g, location.href);
+              return tag;
+            }
+          </script>
+          <script language="JavaScript">document.write(line_button_tag());</script>
+           
+          <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+           
+          <div id="fb-root"></div>
+          <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2';
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));</script>
+           
+          <script language="JavaScript">
+            function fb_button_tag(){
+             var tag= '<div class="fb-like" data-href="{0}" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>';
+             tag = tag.replace(/\{0\}/g, location.href);
+             return tag;
+            }
+          </script>
+          <script language="JavaScript">document.write(fb_button_tag());</script>
+            
+            
         </div>
     </div>
 </div>
 
-<p>
-  <strong>展覧会名</strong>
-  <%= @event.name %>
-</p>
-
-<p>
-  <strong>開催開始日</strong>
-  <%= @event.from_date %>
-</p>
-
-  <strong>開催終了日</strong>
-  <%= @event.to_date %>
-</p>
-
-<p>
-  <strong>開始時間</strong>
-  <%= @event.from_time %>
-</p>
-  
-  <strong>終了時間</strong>
-  <%= @event.to_time %>
-</p>
-
-<p>
-  <strong>開催場所</strong>
-  <%= @event.prefecture %>
-</p>
-
-<p>
-  <strong>流派</strong>
-  <%= @event.style %>
-</p>
-
-<p>
-  <strong>料金</strong>
-  <%= @event.price %>
-</p>
-
-<p>
-  <strong>出瓶数</strong>
-  <%= @event.count_works %>
-</p>
-
-<p>
-  <strong>説明</strong>
-  <%= @event.discription %>
-</p>
-
-<%= link_to "https://twitter.com/share?url=#{request.url}", title: 'Twitter', target: '_blank' do %>
-  <span class="fab fa-twitter-square"></span>
-<% end %>
 <!--下はいずれトップページに埋め込みたい-->
 <!--<div class="line-it-button" data-lang="ja" data-type="share-b" data-ver="3" data-url="https://6c2ce7544b164fc79caba3452c655185.vfs.cloud9.us-east-2.amazonaws.com/events/" data-color="default" data-size="small" data-count="true" style="display: none;"></div>-->
 <!-- <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>-->
 <!--<br>-->
 
-<script language="JavaScript">
-  function line_button_tag(){
-    var tag= "<div class='line-it-button' data-lang='ja' data-type='share-a' data-ver='2' data-url='{0}' style='display: none;'></div>";
-    tag = tag.replace(/\{0\}/g, location.href);
-    return tag;
-  }
-</script>
-<script language="JavaScript">document.write(line_button_tag());</script>
- 
-<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
- 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
- 
-<script language="JavaScript">
-  function fb_button_tag(){
-   var tag= '<div class="fb-like" data-href="{0}" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>';
-   tag = tag.replace(/\{0\}/g, location.href);
-   return tag;
-  }
-</script>
-<script language="JavaScript">document.write(fb_button_tag());</script>
-<%= link_to 'Back', events_path %>
+<%= link_to events_path, class: "btn-flat-logo" do %>
+  <i class="fa fa-chevron-left"> 展覧会一覧へ戻る</i>
+<% end %>

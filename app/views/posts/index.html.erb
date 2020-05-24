@@ -7,42 +7,43 @@
             <h2 class="post-author">
               <%= post.user.name %>
             </h2>
-          <%= image_tag post.image.url %>
-          <% if !post.favorite_users.include?(current_user) %>
-            <%= link_to favorites_path(post_id: post.id), method: :post do %>
-              <i class="far fa-heart like-btn"></i>
+            <%= image_tag post.image.url %>
+            <% if !post.favorite_users.include?(current_user) %>
+              <%= link_to favorites_path(post_id: post.id), method: :post do %>
+                <i class="far fa-heart like-btn"></i>
+              <% end %>
+            <% else %>
+              <%= link_to favorites_path(post_id: post.id), method: :delete do %>
+                <i class="far fa-heart unlike-btn"></i>
+              <% end %>
             <% end %>
-          <% else %>
-            <%= link_to favorites_path(post_id: post.id), method: :delete do %>
-              <i class="far fa-heart unlike-btn"></i>
+            <%= post.favorite_users.count %>
+            <%= link_to comments_new_path(post_id: post.id), remote: :true do %>
+                <i class="far fa-comment"></i>
             <% end %>
-          <% end %>
-          <%= post.favorite_users.count %>
-          <%= link_to comments_new_path(post_id: post.id), remote: :true do %>
-              <i class="far fa-comment"></i>
-          <% end %>
-          <p class="post-text">
-              <%= post.description %>
-          </p>
-          
-          <div class="comment-wrapper border-top　mb-10">
-            <h3 class="mt-5">コメント一覧</h3>
-            <div id=<%= "comment_new#{post.id}" %>></div>
-            <% post.comments.each do |comment| %>
-              <div>
-                <p class="post-name">
-                  　<%= comment.user.name %>
-                </p>
-                <p class="post-text">
-                    <%= comment.content %>
-                </p>
+            <p class="post-text">
+                <%= post.description %>
+            </p>
+            
+            <div class="comment-wrapper border-top　mb-10">
+              <h3 class="mt-5">コメント一覧</h3>
+              <div id=<%= "comment_new#{post.id}" %>></div>
+              <% post.comments.each do |comment| %>
+                <div>
+                  <p class="post-name">
+                    　<%= comment.user.name %>
+                  </p>
+                  <p class="post-text">
+                      <%= comment.content %>
+                  </p>
               </div>
             <% end %>
+            </div>
           </div>
-        </div>
-     </div>
-    <% end %>
-  </div>
+       </div>
+       </div>
+      <% end %>
+    </div>
   <%= link_to '作品を投稿する', new_post_path %><br>
   <% if current_user&.admin? %>
     <%= link_to '管理者作品Indexへ', admins_postsindex_path %>
